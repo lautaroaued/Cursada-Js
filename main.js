@@ -1,32 +1,66 @@
 function login () {
-    username = prompt("Ingresa su nombre de usuario:") 
-    if (username.trim() !=="" ) { 
-        alert("Bienvenido! "  + username)
-    } else { alert("Error en el dato ingresado")}
+
+  nombre = prompt("Hola! como te llamas? ")
+  if(nombre !== "" ) {
+    alert("Bienvenido " + nombre)
+  } else { alert ("Error en el dato ingresado")}
 
 }
 
 login()
 
-function calcularCuotas(monto, plazo) {
-    const tasaInteres = 0.1; // Tasa de interés del préstamo (10%)
-    let cuotaInteres = 0;
-    let cuotaTotal = 0;
-  
-    for (let i = 1; i <= plazo; i++) {
-      cuotaInteres = monto * tasaInteres / plazo; // Cuota de interés mensual
-      cuotaTotal = monto / plazo + cuotaInteres; // Cuota total mensual (capital + interés)
-  
-      console.log(`Cuota mensual del mes ${i}: ${cuotaTotal.toFixed(2)}`);
-  
-    
-    }
+const tipologia = [ { codigo: 1, tipo: "Casa", multplicador: 1.10, costoMetro: 10.00 },
+                    { codigo: 2,  tipo: "Departamento", multplicador: 1.05 , costoMetro: 17.00},      
+                    { codigo: 3,  tipo: "Campo", multplicador: 1.30 , costoMetro: 40.00 },
+                    { codigo: 4, tipo: "Local comercial", multplicador: 1.70, costoMetro: 50.00 },
+]
+
+
+function elegirTipologia (codigo) { 
+     let resultado = tipologia.find((tipoPoliza)=> tipoPoliza.codigo === parseInt (codigo) )
+  return resultado
+ 
+}
+
+function cotizar () { 
+
+  let codigo = prompt("Ingresa el codigo del seguro que quiere consultar. 1 - Casa / 2- Departamento / 3 - Campo / 4 - Local Comercial")
+  let seguroElegido = elegirTipologia(codigo)
+  if (seguroElegido !== undefined) {
+    confirm ("elegiste un seguro de " + seguroElegido.tipo)
+
+  }  
+
+  let metros = parseInt(prompt("Ingresa la cantidad de metros a cotizar"))  
+ 
+    if (metros>1) {
+
+      confirm ("Ingresaste " + metros + " para cotizar.")
+      const cuota = calcularCuotas(metros, seguroElegido)
+      confirm ("El valor de cada cuota será de " + (cuota.toFixed(2)) + " ¿Podemos ayudarte en algo mas? ")
+      
+      } else { alert(" Ingresa por favor nuevamente los metros a cotizar ")}
+      
+      }
+
+cotizar()
+
+
+function calcularCuotas (metros, seguroElegido) {
+
+  const cuotaPoliza = metros * seguroElegido.costoMetro * seguroElegido.multplicador
+  return cuotaPoliza
   }
-  
-  // Ejemplo de uso
-  const montoPrestamo = parseFloat(prompt("Ingrese el monto del préstamo:"));
-  const plazoPrestamo = parseInt(prompt("Ingrese el plazo del préstamo en meses:"));
-  
-  calcularCuotas(montoPrestamo, plazoPrestamo);
+
+
+
+
+
+
+
+
+
+
+
 
 
