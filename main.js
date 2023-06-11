@@ -24,13 +24,12 @@ function elegirTipologia(codigo) {
 }
 
 function cotizar() {
-  let codigo = prompt(
-    "Ingresa el codigo del seguro que quiere consultar. 1 - Casa / 2- Departamento / 3 - Campo / 4 - Local Comercial"
-  );
+  let codigo = prompt("Ingresa el codigo del seguro que quiere consultar. 1 - Casa / 2- Departamento / 3 - Campo / 4 - Local Comercial" );
   let seguroElegido = elegirTipologia(codigo);
-  if (seguroElegido !== undefined) {
-    confirm("elegiste un seguro de " + seguroElegido.tipo);
-  }
+  
+  if (seguroElegido === 1 || 2 || 3 || 4) {
+    confirm ("elegiste un seguro de " + seguroElegido.tipo);
+  } 
 
   let metros = parseInt(prompt("Ingresa la cantidad de metros a cotizar"));
 
