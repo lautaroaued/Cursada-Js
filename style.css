@@ -1,4 +1,35 @@
- header { 
+body {
+ margin: 5px;
+ padding: 5px;
+
+}
+
+header { 
 
     text-align: center;
  }
+
+ #buscarCobertura {
+
+   width: 100%;
+ }
+
+ .cuadroDialogo {
+
+   display: flex;
+   justify-content: center;
+   padding: 10px;
+   height: 46px;
+   width: 100%;
+   background-color: darkslateblue;
+   color: whitesmoke;
+   border-radius: 6px;
+
+ }
+
+ .imagen-seguro{
+  width: 200px;
+  height: 100px;
+}
+
+ 

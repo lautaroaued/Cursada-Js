@@ -1,72 +1,47 @@
-
-/* 
-function login() {
-  nombre = prompt("Hola! como te llamas? ");
-  if (nombre !== "") {
-    alert("Bienvenido " + nombre);
-  } else {
-    alert("Error en el dato ingresado");
-  }
-}
-
-login();
-
-*/
-
 const tableBody = document.querySelector("tbody") 
+const buscarCobertura = document.querySelector("input#buscarCobertura")
 
-
-const agregarProductoHtml = (producto)=> {
+const agregarSeguroHtml = (prod)=> {
 
   return `<tr>    
-              <th scope="row">${producto.codigo}</th>
-              <td>${producto.tipo}</td>
-              <td>${producto.costoMetro}</td>
-              <td>${producto.imagen}</td>
-              <td>${producto.codigo} <button id="" class= "button"> 🤍 </button>  </td>
+              <th scope="row">${prod.codigo}</th>
+              <td>${prod.seguro}</td>
+              <td>${prod.monto}</td>
+              <td> <img src="${prod.imagen}" alt="Seguro de ${prod.seguro}" class="imagen-seguro"></td>
+              <td>${prod.precio}</td>
+              <td> <button id="${prod.codigo}" class= "button"> Contratar </button>  </td>
           </tr> `
 } 
 
+const seleccionarPolizas = () => {
 
-
-
-
-/*
-
-function elegirTipologia(codigo) {
-  let resultado = tipologia.find(
-    (tipoPoliza) => tipoPoliza.codigo === parseInt(codigo)
-  );
-  return resultado;
+  let arrayResultado = coberturasDeSeguros.filter((coberturas) => coberturas.seguro.toLowerCase().includes(buscarCobertura.value.trim().toLowerCase()))
+  if(arrayResultado.length > 0) {
+   cargarSeguros(arrayResultado)
+  }   
 }
 
-function cotizar() {
-  let codigo = prompt("Ingresa el codigo del seguro que quiere consultar. 1 - Casa / 2- Departamento / 3 - Campo / 4 - Local Comercial" );
-  let seguroElegido = elegirTipologia(codigo);
+buscarCobertura.addEventListener("search", seleccionarPolizas)
+
+const activarClickEnBotonesContratar = ()=> {
+  const botonesContratar = document.querySelectorAll('button')
   
-  if (seguroElegido === 1 || 2 || 3 || 4) {
-    confirm ("elegiste un seguro de " + seguroElegido.tipo);
-  } 
+  for (let botonContratar of botonesContratar)
+        botonContratar.addEventListener ('click', ()=> {
+          let resultadoContratado = coberturasDeSeguros.find((prod) => prod.codigo === parseInt(botonContratar.id)) 
+          segurosContratados.push(resultadoContratado)
+          guardarEnLocalStorage()
+          mostrarMensajes(`el seguro de ${resultadoContratado.seguro} guardo en favorito..`) 
+          
+        }) 
+      }
 
-  let metros = parseInt(prompt("Ingresa la cantidad de metros a cotizar"));
-
-  if (metros > 1) {
-    confirm("Ingresaste " + metros + " para cotizar.");
-    const cuota = calcularCuotas(metros, seguroElegido);
-    confirm(
-      "El valor de cada cuota será de " +
-        cuota.toFixed(2) +
-        " ¿Podemos ayudarte en algo mas? "
-    );
-  } else {
-    alert(" Ingresa por favor nuevamente los metros a cotizar ");
-  }
+const cargarSeguros = (array) => {
+        tableBody.innerHTML = ""
+        array.forEach((producto) => {
+          tableBody.innerHTML += agregarSeguroHtml(producto)          
+        });
+        activarClickEnBotonesContratar()
 }
 
-cotizar();
-
-function calcularCuotas(metros, seguroElegido) {
-  const cuotaPoliza =
-    metros * seguroElegido.costoMetro * seguroElegido.multplicador;
-  return cuotaPoliza;
-} */
+cargarSeguros( coberturasDeSeguros)
