@@ -1,5 +1,6 @@
 const tableBody = document.querySelector("tbody") 
 const buscarCobertura = document.querySelector("input#buscarCobertura")
+const verFavoritos = document.getElementById("ver-favoritos")
 
 const agregarSeguroHtml = (prod)=> {
 
@@ -31,7 +32,7 @@ const activarClickEnBotonesContratar = ()=> {
           let resultadoContratado = coberturasDeSeguros.find((prod) => prod.codigo === parseInt(botonContratar.id)) 
           segurosContratados.push(resultadoContratado)
           guardarEnLocalStorage()
-          mostrarMensajes(`el seguro de ${resultadoContratado.seguro} guardo en favorito..`) 
+          mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se guardo en favorito..`) 
           
         }) 
       }
@@ -45,3 +46,24 @@ const cargarSeguros = (array) => {
 }
 
 cargarSeguros( coberturasDeSeguros)
+
+
+
+
+verFavoritos.addEventListener("click", ()=> {
+   
+  location.href = "favoritos.html" 
+
+  segurosContratados.forEach((product) => {
+
+    return `<tr>    
+              <th scope="row">${prod.codigo}</th>
+              <td>${prod.seguro}</td>
+              <td>${prod.monto}</td>
+              <td> <img src="${prod.imagen}" alt="Seguro de ${prod.seguro}" class="imagen-seguro"></td>
+              <td>${prod.precio}</td>
+              <td> <button id="${prod.codigo}" class= "button"> Contratar </button>  </td>
+          </tr> `
+  })
+
+})

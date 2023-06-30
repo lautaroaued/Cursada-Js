@@ -25,5 +25,6 @@ const segurosContratados = recuperarFavsDeLocalStorage()
 const mostrarMensajes = (msg)=> {
     const divMsg = document.querySelector('div.cuadroDialogo')
     divMsg.textContent = msg || ''
-    divMsg.style.background = bgcolor || 'darkslateblue;'
+   
 }
+
