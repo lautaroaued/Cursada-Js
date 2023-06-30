@@ -1,6 +1,7 @@
 const tableBody = document.querySelector("tbody") 
 const buscarCobertura = document.querySelector("input#buscarCobertura")
 const verFavoritos = document.getElementById("ver-favoritos")
+const modalContainer = document.getElementById("modal-container")
 
 const agregarSeguroHtml = (prod)=> {
 
@@ -47,28 +48,55 @@ const cargarSeguros = (array) => {
 
 cargarSeguros( coberturasDeSeguros)
 
-/*-----------------------------------------------------------------*/
 
 verFavoritos.addEventListener("click", ()=> {
+
+  modalContainer.innerHTML=""
+  modalContainer.style.display = "block"
    
-  location.href = "favoritos.html" 
+  const modalHeader = document.createElement("div");
+  modalHeader.className= "modal-header"
+  modalHeader.innerHTML = `  
+  <h1 class= "modal-header-titulo"> Seguros Contratados</h1>
+  `
+  modalContainer.append(modalHeader)
 
+  const modalButton = document.createElement("h1")
+  modalButton.innerText = "x"
+  modalButton.className = "modal-header-button"
+
+  modalButton.addEventListener("click", ()  => { 
+
+   modalContainer.style.display = "none" 
+
+  }) 
+
+  modalHeader.append(modalButton)
+ 
   segurosContratados.forEach((prod) => {
+    let segurosElegidos = document.createElement("div")
+    segurosElegidos.className = "modal-content"
+    segurosElegidos.innerHTML = `  
+       
+    <tr>    
+    <th scope="row">${prod.codigo}</th>
+    <td>${prod.seguro}</td>
+    <td>${prod.monto}</td>
+    <td> <img src="${prod.imagen}" alt="Seguro de ${prod.seguro}" class="imagen-seguro"></td>
+    <td>${prod.precio}$</td>
+    
+    </tr> `
 
-    let segurosSeleccionados = document.createElement("div")
-    segurosSeleccionados.className = "modal"
-    segurosSeleccionados.innerHTML = 
+       modalContainer.append(segurosElegidos)
 
-     `<tr>    
-              <th scope="row">${prod.codigo}</th>
-              <td>${prod.seguro}</td>
-              <td>${prod.monto}</td>
-              <td> <img src="${prod.imagen}" alt="Seguro de ${prod.seguro}" class="imagen-seguro"></td>
-              <td>${prod.precio}</td>
-              <td> <button id="${prod.codigo}" class= "button"> Contratar </button>  </td>
-          </tr> `
-  })
+  }) 
 
-    modal.appen(segurosSeleccionados)
+  const total = segurosContratados.reduce((acc , seguro) => acc + seguro.precio, 0);
 
-})
+  const totalCompra = document.createElement("div")
+  totalCompra.className = "total-content"
+  totalCompra.innerHTML = ` total a pagar: ${total} $ `;
+  modalContainer.append(totalCompra);
+
+
+    })
