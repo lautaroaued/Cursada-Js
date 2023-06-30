@@ -47,16 +47,19 @@ const cargarSeguros = (array) => {
 
 cargarSeguros( coberturasDeSeguros)
 
-
-
+/*-----------------------------------------------------------------*/
 
 verFavoritos.addEventListener("click", ()=> {
    
   location.href = "favoritos.html" 
 
-  segurosContratados.forEach((product) => {
+  segurosContratados.forEach((prod) => {
 
-    return `<tr>    
+    let segurosSeleccionados = document.createElement("div")
+    segurosSeleccionados.className = "modal"
+    segurosSeleccionados.innerHTML = 
+
+     `<tr>    
               <th scope="row">${prod.codigo}</th>
               <td>${prod.seguro}</td>
               <td>${prod.monto}</td>
@@ -65,5 +68,7 @@ verFavoritos.addEventListener("click", ()=> {
               <td> <button id="${prod.codigo}" class= "button"> Contratar </button>  </td>
           </tr> `
   })
+
+    modal.appen(segurosSeleccionados)
 
 })
