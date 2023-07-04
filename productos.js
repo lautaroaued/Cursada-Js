@@ -98,7 +98,7 @@ function mostrarImporteTotal() {
     const totalMonto = elemento.reduce((acc, elem) => acc + elem.precio, 0);
   
     let totalMontoElemento = document.createElement("p");
-    totalMontoElemento.textContent = `Monto Total: $${totalMonto}`;
+    totalMontoElemento.textContent = `Monto Total a pagar por los seguros contratados es: $${totalMonto}`;
     
     let montoTotalContainer = document.getElementById("monto-total").firstElementChild;
     montoTotalContainer.textContent = "";

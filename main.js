@@ -21,7 +21,7 @@ const agregarSeguroHtml = (prod)=> {
               <td>${prod.monto}</td>
               <td> <img src="${prod.imagen}" alt="Seguro de ${prod.seguro}" class="imagen-seguro"></td>
               <td>${prod.precio}</td>
-              <td> <button id="${prod.codigo}" class= "button"> Contratar </button>  </td>
+              <td> <button id="${prod.codigo}" class= "button"> AGREGAR </button>  </td>
           </tr> `
 
         } 
@@ -75,7 +75,7 @@ const guardarEnLocalStorage = ()=> {
       console.log("imprimiendo localstorage");
       console.log(localStorage)
       console.log(resultadoContratado.seguro);
-      mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se guardo en favorito..`) 
+      mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se AGREGO a tu portafolio..`) 
 }
   
 

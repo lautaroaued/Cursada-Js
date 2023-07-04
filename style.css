@@ -50,4 +50,40 @@ body {
     background-color: #f2f2f2;
   }
   
- 
+  .boton {
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+
+  .texto-tabla {
+    font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  }
+
+  .seguros-texto {
+    color: #1563cf;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .container-favoritos {
+    display: flex;
+    align-items: center;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+
+
