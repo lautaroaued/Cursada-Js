@@ -90,37 +90,27 @@ function eliminarElemento(index) {
   let productosSeleccionados = document.getElementById("productos-seleccionados");
   productosSeleccionados.innerHTML = ""; 
   productosSeleccionados.appendChild(tablaActualizada);
+  mostrarImporteTotal()
 }
 
-// let totalMontoElemento = document.createElement("p");
-// totalMontoElemento.textContent = `Monto Total: $${totalMonto.toFixed(2)}`;
-// document.body.appendChild(totalMontoElemento);
-// console.log("Total monto:", totalMonto);
+
+function mostrarImporteTotal() {
+    const totalMonto = elemento.reduce((acc, elem) => acc + elem.precio, 0);
+  
+    let totalMontoElemento = document.createElement("p");
+    totalMontoElemento.textContent = `Monto Total: $${totalMonto}`;
+    
+    let montoTotalContainer = document.getElementById("monto-total").firstElementChild;
+    montoTotalContainer.textContent = "";
+    montoTotalContainer.appendChild(totalMontoElemento);
+  }
+
+  mostrarImporteTotal();
+  
 
 
 
-// let totalCompra = elemento.reduce((acc , seguro) => acc + elemento.precio, 0);
-
-//   totalCompra = document.createElement("div")
-//   totalCompra.className = "total-content"
-//   totalCompra.innerHTML = ` total a pagar: ${total} $ `;
-//   modalContainer.append(totalCompra);
-
-
-   
-  const totalMonto = elemento.reduce((acc, elem) => acc + elem.monto, 0);
-  let totalMontoElemento = document.createElement("p");
-totalMontoElemento.textContent = `Monto Total: $${totalMonto}`;
-document.getElementById("monto-total").appendChild(totalMontoElemento);
-
-
-
-
-
-
-
-
-
+  
 
 
 
