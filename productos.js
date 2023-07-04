@@ -1,30 +1,130 @@
 
-const coberturasDeSeguros = [
-    { codigo: 1, seguro: "Casa", monto: "Hasta $500.000", imagen: "./imagenes/casa.jpg", precio: 999.99},
-    { codigo: 2, seguro: "Campo", monto: "Hasta $100.000", imagen: "./imagenes/campo.jpg", precio: 199.99 }, 
-    { codigo: 3, seguro: "Negocio", monto: "Hasta $300.000", imagen: "./imagenes/local comercial.jpg", precio: 599.99 },   
+let item = localStorage.getItem('Favoritos');
+let elemento = JSON.parse(item);
+console.log(elemento);
+
+let tabla = document.createElement("table");
+tabla.className = "table caption-top";
+
+for (let i = 0; i < elemento.length; i++) {
+  let fila = document.createElement("tr");
+
+  let codigo = document.createElement("td");
+  codigo.textContent = elemento[i].codigo;
+
+  let seguro = document.createElement("td");
+  seguro.textContent = elemento[i].seguro;
+
+  let monto = document.createElement("td");
+  monto.textContent = elemento[i].monto;
+
+  let imagen = document.createElement("td");
+  let imagenElemento = document.createElement("img");
+  imagenElemento.src = elemento[i].imagen;
+  imagenElemento.alt = "Imagen " + elemento[i].codigo;
+  imagen.appendChild(imagenElemento);
+
+  let precio = document.createElement("td");
+  precio.textContent = elemento[i].precio;
+
+  let botonEliminar = document.createElement("button");
+  botonEliminar.textContent = "Eliminar";
+  botonEliminar.addEventListener("click", () => eliminarElemento(i));
+
+  fila.appendChild(codigo);
+  fila.appendChild(seguro);
+  fila.appendChild(monto);
+  fila.appendChild(imagen);
+  fila.appendChild(precio);
+  fila.appendChild(botonEliminar);
+
+  tabla.appendChild(fila);
+}
+
+document.getElementById("productos-seleccionados").appendChild(tabla);
+
+
+function eliminarElemento(index) {
+ 
+  elemento.splice(index, 1);
+
+  
+  let tablaActualizada = document.createElement("table");
+  tablaActualizada.className = "table caption-top";
+
+  for (let i = 0; i < elemento.length; i++) {
+    let fila = document.createElement("tr");
+
+    let codigo = document.createElement("td");
+    codigo.textContent = elemento[i].codigo;
+
+    let seguro = document.createElement("td");
+    seguro.textContent = elemento[i].seguro;
+
+    let monto = document.createElement("td");
+    monto.textContent = elemento[i].monto;
+
+    let imagen = document.createElement("td");
+    let imagenElemento = document.createElement("img");
+    imagenElemento.src = elemento[i].imagen;
+    imagenElemento.alt = "Imagen " + elemento[i].codigo;
+    imagen.appendChild(imagenElemento);
+
+    let precio = document.createElement("td");
+    precio.textContent = elemento[i].precio;
+
+    let botonEliminar = document.createElement("button");
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.addEventListener("click", () => eliminarElemento(i));
+
+    fila.appendChild(codigo);
+    fila.appendChild(seguro);
+    fila.appendChild(monto);
+    fila.appendChild(imagen);
+    fila.appendChild(precio);
+    fila.appendChild(botonEliminar);
+
+    tablaActualizada.appendChild(fila);
+  }
+
+  let productosSeleccionados = document.getElementById("productos-seleccionados");
+  productosSeleccionados.innerHTML = ""; 
+  productosSeleccionados.appendChild(tablaActualizada);
+}
+
+// let totalMontoElemento = document.createElement("p");
+// totalMontoElemento.textContent = `Monto Total: $${totalMonto.toFixed(2)}`;
+// document.body.appendChild(totalMontoElemento);
+// console.log("Total monto:", totalMonto);
+
+
+
+// let totalCompra = elemento.reduce((acc , seguro) => acc + elemento.precio, 0);
+
+//   totalCompra = document.createElement("div")
+//   totalCompra.className = "total-content"
+//   totalCompra.innerHTML = ` total a pagar: ${total} $ `;
+//   modalContainer.append(totalCompra);
+
+
    
-  ]
+  const totalMonto = elemento.reduce((acc, elem) => acc + elem.monto, 0);
+  let totalMontoElemento = document.createElement("p");
+totalMontoElemento.textContent = `Monto Total: $${totalMonto}`;
+document.getElementById("monto-total").appendChild(totalMontoElemento);
 
-  const guardarEnLocalStorage = ()=> {
-    if (segurosContratados.length > 0) {
-        localStorage.setItem('Favoritos', JSON.stringify(segurosContratados))
-    }
-}
 
-const recuperarFavsDeLocalStorage = ()=> {
-    if (localStorage.getItem('Favoritos')) {
-        return JSON.parse(localStorage.getItem('Favoritos'))
-    } else {
-        return []
-    }
-}
 
-const segurosContratados = recuperarFavsDeLocalStorage()
 
-const mostrarMensajes = (msg)=> {
-    const divMsg = document.querySelector('div.cuadroDialogo')
-    divMsg.textContent = msg || ''
-   
-}
+
+
+
+
+
+
+
+
+
+
+
 

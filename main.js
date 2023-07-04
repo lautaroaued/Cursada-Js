@@ -1,7 +1,17 @@
+let arregloAuxiliar = [];
+let resultadoContratado = '';
+const coberturasDeSeguros = [
+  { codigo: 1, seguro: "Casa", monto: "Hasta $500.000", imagen: "./imagenes/casa.jpg", precio: 999.99},
+  { codigo: 2, seguro: "Campo", monto: "Hasta $100.000", imagen: "./imagenes/campo.jpg", precio: 199.99 }, 
+  { codigo: 3, seguro: "Negocio", monto: "Hasta $300.000", imagen: "./imagenes/local comercial.jpg", precio: 599.99 },   
+ 
+]
+
 const tableBody = document.querySelector("tbody") 
 const buscarCobertura = document.querySelector("input#buscarCobertura")
 const verFavoritos = document.getElementById("ver-favoritos")
-const modalContainer = document.getElementById("modal-container")
+
+
 
 const agregarSeguroHtml = (prod)=> {
 
@@ -13,7 +23,8 @@ const agregarSeguroHtml = (prod)=> {
               <td>${prod.precio}</td>
               <td> <button id="${prod.codigo}" class= "button"> Contratar </button>  </td>
           </tr> `
-} 
+
+        } 
 
 const seleccionarPolizas = () => {
 
@@ -26,14 +37,17 @@ const seleccionarPolizas = () => {
 buscarCobertura.addEventListener("search", seleccionarPolizas)
 
 const activarClickEnBotonesContratar = ()=> {
-  const botonesContratar = document.querySelectorAll('button')
+ console.log("active botones");
+    const botonesContratar = document.querySelectorAll('button')
   
   for (let botonContratar of botonesContratar)
         botonContratar.addEventListener ('click', ()=> {
-          let resultadoContratado = coberturasDeSeguros.find((prod) => prod.codigo === parseInt(botonContratar.id)) 
-          segurosContratados.push(resultadoContratado)
-          guardarEnLocalStorage()
-          mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se guardo en favorito..`) 
+          resultadoContratado = coberturasDeSeguros.find((prod) => prod.codigo === parseInt(botonContratar.id)) 
+          arregloAuxiliar.push(resultadoContratado);
+          console.log(arregloAuxiliar);
+          console.log(botonContratar.id);
+          guardarEnLocalStorage();
+          
           
         }) 
       }
@@ -46,57 +60,27 @@ const cargarSeguros = (array) => {
         activarClickEnBotonesContratar()
 }
 
-cargarSeguros( coberturasDeSeguros)
+cargarSeguros(coberturasDeSeguros);
 
 
 verFavoritos.addEventListener("click", ()=> {
+  location.href = "favoritos.html" 
+})
 
-  modalContainer.innerHTML=""
-  modalContainer.style.display = "block"
+const guardarEnLocalStorage = ()=> {
+     
+        localStorage.setItem('Favoritos', JSON.stringify(arregloAuxiliar))
    
-  const modalHeader = document.createElement("div");
-  modalHeader.className= "modal-header"
-  modalHeader.innerHTML = `  
-  <h1 class= "modal-header-titulo"> Seguros Contratados</h1>
-  `
-  modalContainer.append(modalHeader)
-
-  const modalButton = document.createElement("h1")
-  modalButton.innerText = "x"
-  modalButton.className = "modal-header-button"
-
-  modalButton.addEventListener("click", ()  => { 
-
-   modalContainer.style.display = "none" 
-
-  }) 
-
-  modalHeader.append(modalButton)
- 
-  segurosContratados.forEach((prod) => {
-    let segurosElegidos = document.createElement("div")
-    segurosElegidos.className = "modal-content"
-    segurosElegidos.innerHTML = `  
-       
-    <tr>    
-    <th scope="row">${prod.codigo}</th>
-    <td>${prod.seguro}</td>
-    <td>${prod.monto}</td>
-    <td> <img src="${prod.imagen}" alt="Seguro de ${prod.seguro}" class="imagen-seguro"></td>
-    <td>${prod.precio}$</td>
     
-    </tr> `
+      console.log("imprimiendo localstorage");
+      console.log(localStorage)
+      console.log(resultadoContratado.seguro);
+      mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se guardo en favorito..`) 
+}
+  
 
-       modalContainer.append(segurosElegidos)
-
-  }) 
-
-  const total = segurosContratados.reduce((acc , seguro) => acc + seguro.precio, 0);
-
-  const totalCompra = document.createElement("div")
-  totalCompra.className = "total-content"
-  totalCompra.innerHTML = ` total a pagar: ${total} $ `;
-  modalContainer.append(totalCompra);
-
-
-    })
+const mostrarMensajes = (msg)=> {
+    const divMsg = document.querySelector('.cuadroDialogo');
+    divMsg.innerHTML = msg || ''
+   
+}
