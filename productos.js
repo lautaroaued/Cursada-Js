@@ -132,6 +132,7 @@ function mostrarImporteTotal() {
             location.href = 'tabla.html';
           } else if (result.isDenied) {
             Swal.fire('Gracias por su contratacion, vuelva pronto' );
+            location.href = 'tabla.html';
           }
         });
       });
