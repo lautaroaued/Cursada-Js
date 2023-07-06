@@ -90,3 +90,15 @@ img {
   align-items: center;
   flex-direction: row-reverse;
 }
+
+#monto-total {
+ font-family: monospace;
+ font-size: 16px; 
+ font-weight: bold;
+ color: #333;
+ margin-bottom: 10px;
+  }
+  
+ 
+ 
+ 
