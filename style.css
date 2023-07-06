@@ -1,89 +1,92 @@
 body {
   margin: 5px;
   padding: 5px;
- 
- }
- 
- header { 
- 
-     text-align: center;
-  }
- 
-  #buscarCobertura {
- 
-    width: 100%;
-  }
- 
-  .cuadroDialogo {
- 
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    height: 46px;
-    width: 100%;
-    background-color: darkslateblue;
-    color: whitesmoke;
-    border-radius: 6px;
- 
-  }
+}
 
-  img{
-   width: 50px;
-   height: 50px; 
-  }
+header {
+  text-align: center;
+}
+
+#buscarCobertura {
+  width: 100%;
+}
+
+.cuadroDialogo {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+  height: 46px;
+  width: 100%;
+  background-color: darkslateblue;
+  color: whitesmoke;
+  border-radius: 6px;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+
+.box-boton {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-direction: column;
+}
 
 
 
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .table th,
-  .table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  .table th {
-    background-color: #f2f2f2;
-  }
-  
-  .boton {
-    padding: 10px 20px;
-    background-color: #e0e0e0;
-    color: #333;
-    text-decoration: none;
-    border-radius: 5px;
-  }
-  
+.boton {
+  padding: 10px 20px;
+  background-color: #e0e0e0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 10px
+}
 
-  .texto-tabla {
-    font-size: 18px;
+.texto-tabla {
+  font-size: 18px;
   font-weight: bold;
   color: #333;
   text-align: center;
   padding: 10px;
   background-color: #f2f2f2;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
-  }
-
-  .seguros-texto {
-    color: #1563cf;
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-
-  .container-favoritos {
-    display: flex;
-    align-items: center;
-    display: flex;
-    align-items: center;
-    flex-direction: row-reverse;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.seguros-texto {
+  color: #1563cf;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
 
-
+.container-favoritos {
+  display: flex;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
