@@ -129,7 +129,7 @@ function mostrarImporteTotal() {
           denyButtonText: 'No, gracias'
         }).then((result) => {
           if (result.isConfirmed) {
-            window.location.href = 'tabla.html';
+            location.href = 'tabla.html';
           } else if (result.isDenied) {
             Swal.fire('Gracias por su contratacion, vuelva pronto' );
           }
