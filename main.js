@@ -67,20 +67,22 @@ verFavoritos.addEventListener("click", ()=> {
   location.href = "favoritos.html" 
 })
 
-const guardarEnLocalStorage = ()=> {
-     
-        localStorage.setItem('Favoritos', JSON.stringify(arregloAuxiliar))
-   
-    
-      console.log("imprimiendo localstorage");
-      console.log(localStorage)
-      console.log(resultadoContratado.seguro);
-      mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se AGREGO a tu portafolio..`) 
-}
-  
+ 
 
 const mostrarMensajes = (msg)=> {
     const divMsg = document.querySelector('.cuadroDialogo');
     divMsg.innerHTML = msg || ''
    
 }
+
+
+localStorage.removeItem('Favoritos');
+
+
+const guardarEnLocalStorage = () => {
+  localStorage.setItem('Favoritos', JSON.stringify(arregloAuxiliar));
+  console.log("imprimiendo localStorage");
+  console.log(localStorage);
+  console.log(resultadoContratado.seguro);
+  mostrarMensajes(`El seguro de ${resultadoContratado.seguro} se AGREGO a tu portafolio..`);
+};
